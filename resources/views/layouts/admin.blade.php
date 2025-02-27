@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css" crossorigin="anonymous">
 
     <!-- Scripts -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/css/admin.css', 'resources/js/admin.js'])
 
     <!-- Styles -->
     @livewireStyles
@@ -26,10 +26,12 @@
 
     @include('layouts.partials.admin.navbar')
 
+    @include('layouts.partials.admin.sidebar')
+
     <div class="p-4 sm:ml-64">
         <x-banner />
 
-        <div class="p-6">
+        <div class="p-6 mt-14">
             {{ $slot }}
         </div>
 
