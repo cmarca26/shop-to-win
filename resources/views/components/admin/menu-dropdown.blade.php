@@ -4,7 +4,7 @@
     $isActive = in_array(Route::currentRouteName(), $routes);
 @endphp
 
-<li x-data="{ open: {{ $isActive ? 'true' : 'false' }} }" x-init="$watch('open', value => { if ( value && !{{ $isActive ? 'true' : 'false' }}) { $dispatch('menu-open', {{ $menuIndex }}); } })"
+<li x-data="{ open: {{ $isActive ? 'true' : 'false' }} }" x-init="$watch('open', value => { if (value && !{{ $isActive ? 'true' : 'false' }}) { $dispatch('menu-open', {{ $menuIndex }}); } })"
     @menu-open.window="if (!{{ $isActive ? 'true' : 'false' }}) { open = ($event.detail === {{ $menuIndex }}) }">
 
     <button type="button"
@@ -31,12 +31,14 @@
 
     <ul x-show="open" class="py-2 space-y-2">
         @foreach ($submenus as $submenu)
-            <li>
-                <a href="{{ route($submenu['route']) }}"
-                    class="w-full p-2 pl-11 hover:text-gray-900 dark:hover:text-gray-100 {{ request()->routeIs($submenu['route']) ? 'text-gray-900 dark:text-gray-100 font-semibold' : 'text-gray-500 dark:text-gray-400 font-medium' }}">
-                    {{ __($submenu['title']) }}
-                </a>
-            </li>
+            @can($submenu['permission'])
+                <li>
+                    <a href="{{ route($submenu['route']) }}"
+                        class="w-full p-2 pl-11 hover:text-gray-900 dark:hover:text-gray-100 capitalize {{ request()->routeIs($submenu['route']) ? 'text-gray-900 dark:text-gray-100 font-semibold' : 'text-gray-500 dark:text-gray-400 font-medium' }}">
+                        {{ __($submenu['title']) }}
+                    </a>
+                </li>
+            @endcan
         @endforeach
     </ul>
 </li>

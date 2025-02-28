@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -13,4 +15,6 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('/', DashboardController::class)->name('admin');
+    Route::get('/usuarios', UserController::class)->name('users');
+    Route::get('/roles-y-permisos', RoleController::class)->name('roles');
 });

@@ -11,6 +11,6 @@
             class="{{ $isActive ? 'text-gray-900 dark:text-gray-100 font-semibold' : 'text-gray-500 dark:text-gray-400 font-medium' }}">
             {{ $icon }}
         </span>
-        <span class="ms-3">{{ __($title) }}</span>
+        <span class="ms-3 capitalize">{{ __($title) }}</span>
     </a>
 </li>

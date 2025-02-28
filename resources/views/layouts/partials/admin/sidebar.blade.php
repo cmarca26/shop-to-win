@@ -10,6 +10,16 @@
                 </x-slot>
             </x-admin.menu-plain>
 
+            @canany(['users.show', 'roles.show'])
+                <x-admin.menu-dropdown title="{{ __('Settings') }}" :routes="['admin.users', 'admin.roles']" :submenus="[
+                    ['route' => 'admin.users', 'title' => __('Users'), 'permission' => 'users.show'],
+                    ['route' => 'admin.roles', 'title' => __('Roles and Permisions'), 'permission' => 'roles.show'],
+                ]" :menuIndex="1">
+                    <x-slot name="icon">
+                        <i class="fa-solid fa-cog"></i>
+                    </x-slot>
+                </x-admin.menu-dropdown>
+            @endcanany
         </ul>
     </div>
 </aside>
